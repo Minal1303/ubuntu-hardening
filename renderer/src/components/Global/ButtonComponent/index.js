@@ -1,11 +1,13 @@
 import { Button, Typography, Box } from "@mui/material"
 import { useGlobalContext } from '../../../context/global';
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const ButtonComponent = ({ text, icon }) => {
 
     const { open, selected, handleSelect } = useGlobalContext();
     const [selected1, setSelected1] = useState(false);
+    const router = useRouter();
     
     useEffect(() => {
         setSelected1(selected  === text ? true : false)
@@ -25,7 +27,7 @@ export const ButtonComponent = ({ text, icon }) => {
             }}
             onMouseEnter={() => setSelected1(true)}
             onMouseLeave={() => setSelected1(selected1 === text ? true : false)}
-            onClick={() => handleSelect(text)}
+            onClick={() => {handleSelect(text); router.push(`/${text.toLowerCase()}`)}}
         >
             {(text === selected || selected1) && <Box
                 sx={{

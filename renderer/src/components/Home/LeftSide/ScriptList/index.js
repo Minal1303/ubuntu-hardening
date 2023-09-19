@@ -39,31 +39,31 @@ const rowsData = [
     file: "usb-enable.sh"
   },
   {
-    id: "2",
+    id: "3",
     instruction: "Improve formatting of port number and fix some other errors!",
     description: "Improve formatting of port number and fix some other errors!",
     file: "ssh_fix_port_formatting.sh"
   },
   {
-    id: "3",
+    id: "4",
     instruction: "Block SSH Client",
     description: "Blocking the SSH client in Ubuntu is a significant security measure aimed at controlling remote access to a system. This action is essential in scenarios where restricting SSH connections is critical to safeguarding sensitive data, system integrity, and network security.\n\nAn important feature of this security practice is its adaptability. System administrators have the flexibility to configure rules and access policies according to their specific security requirements. Customization options include defining which IP addresses or user accounts should be denied SSH access, providing a tailored approach to security management.\n\nNevertheless, exercising caution and careful planning are imperative during the implementation of SSH client blocking. Misconfigurations or overly restrictive rules can disrupt legitimate access and lead to unintended consequences. Therefore, a meticulous assessment of security needs, thorough testing, and adherence to best practices are essential to strike the right balance between enhanced security and operational continuity.",
     file: "ssh-disable.sh"
   },
   {
-    id: "4",
+    id: "5",
     instruction: "Enable SSH Client",
     description: "Enabling SSH access on an Ubuntu system through the use of a script streamlines and automates the process, making secure remote administration more accessible. By executing the script with root privileges, the SSH configuration is modified according to your specifications, including changes to the SSH port, authentication methods, and root login permissions. The script then restarts the SSH service to apply the new settings, granting you secure remote access. It's essential to bolster security further by implementing strong authentication methods, such as SSH keys, and configuring firewall rules for controlled access. This efficient approach simplifies SSH setup and maintenance across multiple Ubuntu systems, enhancing both convenience and system security.",
     file: "ssh-enable.sh"
   },
   {
-    id: "5",
+    id: "6",
     instruction: "Restrict TOR",
     description: "Blocking Tor is a security measure aimed at preventing access to the Tor network, which is known for providing anonymous and potentially untraceable internet connections. This action is often taken in environments where anonymity poses a security risk or regulatory compliance is required.\n\nThe primary purpose of blocking Tor is to mitigate security threats, including the potential for unauthorized access, data exfiltration, or malicious activities that can be facilitated through the use of the Tor network.\n\nBlocking Tor can be achieved through various methods, such as configuring firewall rules, monitoring network traffic, or using specialized software solutions. Organizations may customize their approach to align with specific security policies and operational needs.\n\nHowever, it's important to carefully consider the implications of blocking Tor. This action may impact legitimate users who rely on Tor for privacy and security reasons. A balance must be struck between security objectives and respecting individual privacy rights and lawful use of technology.",
     file: "tor-disable.sh"
   },
   {
-    id: "6",
+    id: "7",
     instruction: "Enable TOR",
     description: "Enabling Tor in Ubuntu allows you to enhance your online privacy and anonymity by routing your internet traffic through the Tor network. Tor, short for \"The Onion Router,\" is a network of volunteer-run servers that anonymize your internet activities by relaying your connections through multiple nodes, concealing your IP address and location. Enabling Tor on your Ubuntu system involves installing the Tor software, configuring applications to use it as a proxy, and possibly making adjustments to your network settings. Once enabled, Tor provides a layer of privacy and security, making it difficult for anyone to trace your online actions back to your identity. This is particularly valuable when you want to browse the web, access online services, or connect to SSH servers while maintaining anonymity and circumventing censorship.",
     file: "tor-enable.sh"
@@ -255,6 +255,7 @@ export const ScriptList = () => {
           description={data.description}
           file={data.file}
           setData={setData}
+          onClick={() => handleExecute({ script: data.file })}
         />
       </Box>
     )
@@ -267,7 +268,7 @@ export const ScriptList = () => {
   )
 }
 
-const ScriptDetailModal = ({ open, id, instruction, description, file, setData }) => {
+const ScriptDetailModal = ({ open, id, instruction, description, file, setData, onClick }) => {
   return (
     <Modal
       open={open}
@@ -370,6 +371,7 @@ const ScriptDetailModal = ({ open, id, instruction, description, file, setData }
                   color: "white"
                 }
               }}
+              onClick={onClick}
             >
               Commit
             </Button>

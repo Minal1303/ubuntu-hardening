@@ -9,17 +9,6 @@ import { RightSide } from "./RightSide";
 
 export const Home = () => {
 
-  const handleReboot = () => {
-    sudo.exec("reboot", {
-      name: "Electron App"
-    },
-      (err, stdout, stderr) => {
-        if (err) console.log(err)
-        return;
-      }
-    )
-  }
-
   return (
     <Box
       sx={{

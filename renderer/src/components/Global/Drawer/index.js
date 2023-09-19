@@ -156,7 +156,9 @@ export function DrawerLeft({ children }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Drawer variant="permanent" open={open}
+      <Drawer
+        variant="permanent"
+        open={open}
         sx={{
           color: "#212121!important"
         }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const GlobalContext = createContext();
 
@@ -14,7 +14,14 @@ export function GlobalContextProvider({children}) {
 
     const handleSelect = (option) => {
         setSelected(option);
+        localStorage.setItem("option", JSON.stringify(option));
     }
+
+    
+
+    useEffect(() => {
+        setSelected(JSON.parse(localStorage.getItem("option")) || "Home");
+    }, [])
 
     return (
         <GlobalContext.Provider
