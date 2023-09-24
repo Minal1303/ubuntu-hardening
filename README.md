@@ -1,3 +1,10 @@
+/* CSS HEX */
+--light-cyan: #e0fbfcff;
+--charcoal: #394053ff;
+--dark-cyan: #32908fff;
+--earth-yellow: #f3c178ff;
+--peach: #ffc49bff;
+
 <p align="center"><img src="https://i.imgur.com/X7dSE68.png"></p>
 
 ## Usage
