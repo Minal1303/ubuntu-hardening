@@ -1,25 +1,48 @@
 #!/bin/bash
 
-# Check if script is being run as root
-if [ "$EUID" -ne 0 ]; then
-  echo "This script must be run as root."
-  exit 1
-fi
+# Update and upgrade packages
+apt update
+apt upgrade -y
 
-# Create a Udev rule file to block USB storage devices
-USB_RULE_FILE="/etc/udev/rules.d/99-block-usb-storage.rules"
+# Remove unnecessary packages
+apt autoremove -y
 
-# Check if the rule file already exists, and if it does, back it up
-if [ -f "$USB_RULE_FILE" ]; then
-  mv "$USB_RULE_FILE" "$USB_RULE_FILE.bak"
-fi
+# Install and configure UFW (Uncomplicated Firewall)
+apt install ufw -y
+ufw allow ssh
+ufw --force enable
 
-# Create the new Udev rule file to block USB storage devices
-echo 'ACTION=="add", SUBSYSTEMS=="usb", DRIVERS=="usb-storage", RUN+="/bin/sh -c '\''echo 0 > /sys$env{DEVPATH}/authorized'\''"' > "$USB_RULE_FILE"
+# Disable root login
+sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+service ssh restart
 
-# Reload Udev rules to apply the changes
-sudo udevadm control --reload-rules
-sudo udevadm trigger
+# Install and configure fail2ban
+apt install fail2ban -y
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+systemctl enable fail2ban
+systemctl start fail2ban
 
-echo "USB device blocking has been enabled for USB storage devices."
-echo "You may need to reboot the system for the changes to take effect."
+# Install and configure unattended-upgrades
+apt install unattended-upgrades -y
+cat <<EOF > /etc/apt/apt.conf.d/20auto-upgrades
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+
+cat <<EOF > /etc/apt/apt.conf.d/10periodic
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+
+# Block USB devices by creating a udev rule
+echo 'ACTION=="add", SUBSYSTEMS=="usb", TEST=="authorized_default", ATTR{authorized_default}="0"' | tee /etc/udev/rules.d/99-disable-usb.rules
+echo "USB device blocking is now active. To deactivate, remove the '/etc/udev/rules.d/99-disable-usb.rules' file."
+
+# Reload udev rules
+udevadm control --reload-rules
+udevadm trigger
+
+# Reboot the system to apply changes
+reboot

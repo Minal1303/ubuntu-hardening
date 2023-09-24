@@ -18,7 +18,7 @@ export const Loader = () => {
                     className='anim'
                 >
                     <text className='animText' x="50%" y="50%" dy=".35em" text-anchor="middle">
-                        MineOS
+                        MineAL 
                     </text>
                 </svg>
             {/* </div> */}

@@ -154,7 +154,7 @@ export const ScriptList = () => {
                 >
                   <Button
                     sx={{
-                      backgroundColor: "#1D5352",
+                      backgroundColor: "linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)",
                       color: "white",
                       fontWeight: 500,
                       borderRadius: "30px",

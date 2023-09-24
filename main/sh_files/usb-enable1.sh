@@ -11,4 +11,4 @@ sudo udevadm trigger
 echo "USB device blocking has been deactivated."
 
 # Optionally, you can reboot the system for the changes to take full effect
-sudo reboot
+ sudo reboot
