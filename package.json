@@ -4,7 +4,7 @@
   "productName": "MineAL",
   "description": "My application description",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Ajinkya Anil Kahane<kahaneajinkya051@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
