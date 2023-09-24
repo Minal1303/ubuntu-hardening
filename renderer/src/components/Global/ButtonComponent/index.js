@@ -16,7 +16,7 @@ export const ButtonComponent = ({ text, icon }) => {
     return (
         <Button
             sx={{
-                color: selected1 ? "#05D9D7" : text === selected ? "#05D9D7" : "#1D5352",
+                color: selected1 ? "#e0fbfcff" : text === selected ? "#e0fbfcff" : "#32908fff",
                 display: "relative",
                 justifyContent: !open ? "center " : "flex-start",
                 alignItems: "center",
@@ -32,8 +32,8 @@ export const ButtonComponent = ({ text, icon }) => {
             {(text === selected || selected1) && <Box
                 sx={{
                     boxShadow: open
-                        ? "0px 0px 70px 30px rgba(5,217,215,0.94)"
-                        : "0px 0px 50px 12px rgba(5,217,215,0.94)",
+                        ? "0px 0px 70px 30px #e0fbfcff"
+                        : "0px 0px 50px 12px #e0fbfcff",
                     width: "40px",
                     position: "absolute",
                     left: !open ? "20%" : "25%",

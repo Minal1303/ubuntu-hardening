@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { ScriptList } from "./ScriptList";
+import { colors } from '../../../constants';
 
 export const LeftSide = () => {
   return (
@@ -11,12 +12,12 @@ export const LeftSide = () => {
         overflowX: "hidden",
         maxHeight: "100vh",
         overflowY: "scroll",
-        backgroundColor: "black",
+        backgroundColor: colors.charcoal,
         color: "white",
         px: "15px",
         py: "10px",
         borderRadius: "20px",
-        maxHeight: "82vh"
+        // height: "82vh"
       }}
     >
         <ScriptList />

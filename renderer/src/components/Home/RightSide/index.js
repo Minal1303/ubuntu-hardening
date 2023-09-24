@@ -12,7 +12,7 @@ export const RightSide = () => {
             // maxHight: "50vh",
             maxWidth: "30vw",
             flexDirection: "column",
-            gap: "20px",
+            gap: "10px",
             overflow: "hidden"
         }}
     >

@@ -1,12 +1,13 @@
 import { Avatar, Box, Button, Card, Typography } from '@mui/material'
 import React from 'react'
+import { colors } from '../../../../constants'
 
 
-export const NotificationCard = ({ title, message, time }) => {
+export const NotificationCard = ({ img, title, message, time }) => {
   return (
     <Card
             sx={{
-                backgroundColor: "black",
+                backgroundColor: colors.charcoal,
                 cursor: "pointer",
                 ":hover": {
                     // boxShadow: "5px 5px 20px -15px rgba(5,217,215,0.94)"
@@ -29,17 +30,18 @@ export const NotificationCard = ({ title, message, time }) => {
                             gap: "10px"
                         }}
                     >
-                        <Avatar>
-                            {title.split(" ")[0][0]}{title.split(" ")[1][0]}
-                        </Avatar>
+                        <Avatar
+                         src={img}
+                        />
                         <Box>
                             <Typography
                                 sx={{
                                     fontFamily: "Poppins",
                                     fontWeight: 500,
                                     display: "flex",
-                                    gap: "10px",
-                                    alignItems: "center"
+                                    gap: "12px",
+                                    alignItems: "center",
+                                    fontSize: "18px"
                                 }}
                                 className='unselectable'
                             >
@@ -57,7 +59,7 @@ export const NotificationCard = ({ title, message, time }) => {
                             <Typography
                                 sx={{
                                     fontSize: "12px",
-                                    color: "grey"
+                                    color: colors.lightCyan
                                 }}
                                 className='unselectable'
                             >
@@ -72,7 +74,7 @@ export const NotificationCard = ({ title, message, time }) => {
                     >
                         <Button
                             sx={{
-                                color: "#1D5352"
+                                color: colors.peach
                             }}
                         >
                             Read More...

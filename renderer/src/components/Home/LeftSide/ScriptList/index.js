@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import { Close, Info } from '@mui/icons-material';
 import { ipcRenderer } from 'electron';
+import { colors } from '../../../../constants';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -68,7 +69,7 @@ const rowsData = [
     description: "Enabling Tor in Ubuntu allows you to enhance your online privacy and anonymity by routing your internet traffic through the Tor network. Tor, short for \"The Onion Router,\" is a network of volunteer-run servers that anonymize your internet activities by relaying your connections through multiple nodes, concealing your IP address and location. Enabling Tor on your Ubuntu system involves installing the Tor software, configuring applications to use it as a proxy, and possibly making adjustments to your network settings. Once enabled, Tor provides a layer of privacy and security, making it difficult for anyone to trace your online actions back to your identity. This is particularly valuable when you want to browse the web, access online services, or connect to SSH servers while maintaining anonymity and circumventing censorship.",
     file: "tor-enable.sh"
   },
-  
+
 ]
 
 export const ScriptList = () => {
@@ -109,13 +110,14 @@ export const ScriptList = () => {
 
         <TableContainer
           sx={{
-            color: "color"
+            // bgcolor: "red"
           }}
         >
           <Table>
-            <TableHead>
+            <TableHead
+            >
               <TableRow>
-                <TableCell>
+                {/* <TableCell>
                   <Checkbox
                     sx={{
                       color: "#05D9D7",
@@ -125,7 +127,7 @@ export const ScriptList = () => {
                   //   console.log(e.target)
                   // }}
                   />
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <Typography
                     sx={{
@@ -154,21 +156,24 @@ export const ScriptList = () => {
                 >
                   <Button
                     sx={{
-                      backgroundColor: "linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)",
-                      color: "white",
+                      backgroundColor: colors.yellow,
+                      color: "black",
+                      fontFamily: "Poppins",
                       fontWeight: 500,
                       borderRadius: "30px",
                       px: "15px",
                       py: "10px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
                       ":hover": {
-                        backgroundColor: "#1D5352",
-                        color: "white"
+                        backgroundColor: colors.yellow,
                       }
                     }}
                     disableRipple
                     onClick={handleExecute}
                   >
-                    Execute
+                    Execute All
                   </Button>
                 </TableCell>
               </TableRow>
@@ -177,12 +182,12 @@ export const ScriptList = () => {
               {rowsData.map((d, i) => {
                 return (
                   <TableRow>
-                    <TableCell>
+                    {/* <TableCell>
                       <Checkbox
                         sx={{
                         }}
                       />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Typography
                         sx={{
@@ -218,24 +223,38 @@ export const ScriptList = () => {
                         </Typography>
                         <IconButton
                           onClick={() => setData({ open: !data.open, id: d.id, instruction: d.instruction, description: d.description, file: d.file })}
+                          sx={{
+
+                          }}
                         >
                           <Info
                             sx={{
-                              color: "#1D5352"
+                              color: colors.lightCyan
                             }}
                           />
                         </IconButton>
                       </Box>
                     </TableCell>
                     <TableCell
-
+                      sx={{
+                        // display: "flex",
+                        // justifyContent: "center",
+                        alignItems: "center",
+                        mx: "auto",
+                      }}
                     >
                       <Button
                         sx={{
                           border: "1px solid #1D5352",
-                          color: "#1D5352",
+                          color: "black",
                           borderRadius: "20px",
                           px: "15px",
+                          bgcolor: colors.peach,
+                          fontFamily: "Poppins",
+                          ml: "22px",
+                          ":hover": {
+                            bgcolor: colors.peach
+                          }
                         }}
                         onClick={() => handleExecute({ script: d.file })}
                       >
@@ -275,19 +294,21 @@ const ScriptDetailModal = ({ open, id, instruction, description, file, setData, 
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        bgcolor: "rgba(0, 0, 0, 0.6)"
       }}
     >
       <Box
         sx={{
-          backgroundColor: "black",
+          backgroundColor: colors.charcoal,
           width: "40vw",
           height: "50vh",
-          border: "1px solid #1D5352",
+          border: `2px solid ${colors.peach}`,
           borderRadius: "20px",
           display: "flex",
           flexDirection: "column",
-          px: "20px"
+          px: "20px",
+          pt: "20px"
           // alignItems: ""
         }}
       >
@@ -322,7 +343,11 @@ const ScriptDetailModal = ({ open, id, instruction, description, file, setData, 
           <IconButton
             onClick={() => setData({ open: false })}
           >
-            <Close />
+            <Close
+              sx={{
+                color: colors.yellow
+              }}
+            />
           </IconButton>
         </Box>
         <Box
@@ -361,14 +386,14 @@ const ScriptDetailModal = ({ open, id, instruction, description, file, setData, 
           >
             <Button
               sx={{
-                border: "1px solid #1D5352",
-                color: "#1D5352",
+                // color: "#1D5352",
                 borderRadius: "30px",
                 px: "20px",
                 py: "10px",
+                backgroundColor: colors.peach,
+                color: "black",
                 ":hover": {
-                  backgroundColor: "#1D5352",
-                  color: "white"
+                  backgroundColor: colors.peach,
                 }
               }}
               onClick={onClick}

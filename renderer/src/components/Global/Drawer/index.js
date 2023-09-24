@@ -26,6 +26,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useGlobalContext } from '../../../context/global';
 import { Group, History, Home, Settings } from '@mui/icons-material';
 import BusinessIcon from '@mui/icons-material/Business';
+import { colors } from "../../../constants";
 
 const drawerWidth = 240;
 
@@ -116,15 +117,15 @@ export function DrawerLeft({ children }) {
       />,
       text: "Organisation"
     },
-    {
-      icons: <Group
-        sx={{
-          width: "30px",
-          height: "30px",
-        }}
-      />,
-      text: "Users"
-    },
+    // {
+    //   icons: <Group
+    //     sx={{
+    //       width: "30px",
+    //       height: "30px",
+    //     }}
+    //   />,
+    //   text: "Users"
+    // },
     {
       icons: <History
         sx={{
@@ -138,7 +139,7 @@ export function DrawerLeft({ children }) {
       icons: <Settings
         sx={{
           width: "30px",
-          height: "30px"
+          height: "30px",
         }}
       />,
       text: "Settings"
@@ -164,18 +165,42 @@ export function DrawerLeft({ children }) {
         }}
         PaperProps={{
           sx: {
-            backgroundColor: "black"
+            backgroundColor: "#394053ff"
           }
         }}
       >
-        <DrawerHeader>
-          <IconButton
-            onClick={toggleOpen}
+        <DrawerHeader
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mx: open ? 0 : "auto",
+            px: open ? "20px" : 0
+          }}
+        >
+          <Typography
             sx={{
-              color: "white"
+              fontSize: "30px",
+              fontWeight: 500,
+              fontFamily: "Poppins",
+              color: colors.lightCyan,
+              display: open ? "flex" : "none"
             }}
           >
-            {!open ? <MenuIcon /> : <ChevronLeftIcon />}
+            MineAL
+          </Typography>
+          <IconButton
+            onClick={toggleOpen}
+          >
+            {!open ? <MenuIcon
+              sx={{
+                color: "#e0fbfcff"
+              }}
+            /> : <ChevronLeftIcon
+              sx={{
+                color: "#e0fbfcff"
+              }}
+            />}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -211,10 +236,83 @@ export function DrawerLeft({ children }) {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between"
+              justifyContent: "space-between",
+              alignItems: "center",
+              px: open ? "10px" : 0,
+              
             }}
           >
-            <Button
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                gap: "20px",
+                px: open ? "20px" : 0,
+                border: `1px solid ${colors.peach}`,
+                py: "20px",
+                borderRadius: "20px",
+                backgroundColor: colors.peach
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mx: open ? 0 : "auto"
+                }}
+              >
+                <Avatar
+                  sx={{
+                    color: "black",
+                    border: `1px solid black`
+                  }}
+                  src={"https://staticg.sportskeeda.com/editor/2022/02/f90e1-16453117212926-1920.jpg"}
+                />
+                <IconButton
+                  sx={{
+                    display: open ? "flex" : "none"
+                  }}
+                >
+                  <MoreVertIcon
+                    sx={{
+                      color: "black",
+                    }}
+                  />
+                </IconButton>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  mx: !open ? "auto" : 0,
+                  // px: "20px"
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: "15px",
+                    color: "black",
+                    fontSize: "20px",
+                    fontFamily: "Poppins",
+                    fontWeight: 500
+                  }}
+                >
+                  {open ? "Ajinkya Kahane" : "AK"}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "12px",
+                    color: colors.darkCyan,
+                    display: open ? "flex" : "none"
+                  }}
+                >
+                  kahaneajinkya051@gmail.com
+                </Typography>
+              </Box>
+            </Box>
+            {/* <Button
               sx={{
                 display: "flex",
                 justifyContent: !open ? "center " : "flex-start",
@@ -225,11 +323,10 @@ export function DrawerLeft({ children }) {
             >
               <Avatar
                 sx={{
-                  color: "black"
+                  color: "black",
                 }}
-              >
-                AK
-              </Avatar>
+                src={"https://staticg.sportskeeda.com/editor/2022/02/f90e1-16453117212926-1920.jpg"}
+              />
               <Typography
                 sx={{
                   display: open ? "flex" : "none",
@@ -241,14 +338,15 @@ export function DrawerLeft({ children }) {
             </Button>
             <IconButton
               sx={{
-                color: "white",
                 display: open ? "flex" : "none"
               }}
             >
               <MoreVertIcon
-
+                sx={{
+                color: `${colors.lightCyan}!important`,
+                }}
               />
-            </IconButton>
+            </IconButton> */}
           </Box>
         </Box>
       </Drawer>

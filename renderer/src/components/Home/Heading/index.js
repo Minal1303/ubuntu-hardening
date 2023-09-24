@@ -1,8 +1,12 @@
-import { Box, Button, Divider, Typography } from '@mui/material'
+"use client";
+
+import { Box, Button, Divider, IconButton, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import { History } from '@mui/icons-material';
+import { Circle, History, NotificationAdd, NotificationImportant } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
+import { colors } from "../../../constants";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export const Heading = () => {
 
@@ -19,6 +23,7 @@ export const Heading = () => {
         return () => clearInterval(intervalId);
     }, []);
 
+
     return (
         <Box
             sx={{
@@ -29,7 +34,7 @@ export const Heading = () => {
             <Box
                 sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
                     justifyContent: "space-between",
                     alignItems: "center"
                 }}
@@ -37,21 +42,86 @@ export const Heading = () => {
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "flex-start",
-                        alignItems: "flex-start",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        alignItems: "center",
                         gap: "5px"
                     }}
                 >
                     <Typography
                         sx={{
-                            color: "white",
-                            fontSize: "30px",
+                            color: colors.charcoal,
+                            fontWeight: 600,
+                            fontSize: "40px",
                             fontFamily: "Poppins"
                         }}
                     >
                         Hello Ajinkya!
                     </Typography>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            gap: "20px"
+                        }}
+                    >
+                        <IconButton
+                            sx={{
+                                position: "relative"
+                            }}
+                        >
+                            <Circle 
+                                sx={{
+                                    width: "8px",
+                                    height: "8px",
+                                    color: "red",
+                                    position: "absolute",
+                                    top: "30%",
+                                    right: "30%"
+                                }}
+                            />
+                            <NotificationsIcon 
+                                sx={{
+                                    color: colors.charcoal
+                                }}
+                            />
+                        </IconButton>
+                        <Button
+                            sx={{
+                                color: colors.charcoal,
+                                display: "flex",
+                                gap: "10px",
+                                borderRadius: "50px",
+                                px: "10px",
+                                py: "10px",
+                                bgcolor: colors.yellow
+                            }}
+                        // onClick={() => router.push("/history")}
+                        >
+                            <History
+                                sx={{
+                                    color: colors.charcoal
+                                }}
+                            />
+                            <Typography
+                                sx={{
+                                    fontWeight: 500,
+                                    fontFamily: "Poppins",
+                                }}
+                            >
+                                Review Activity
+                            </Typography>
+                        </Button>
+                    </Box>
+                </Box>
+                <Box
+                    sx={{
+                        display: "flex",
+                        gap: "15px",
+                        alignItems: "flex-start",
+                        width: "100%"
+                    }}
+                >
                     <Box
                         sx={{
                             display: "flex",
@@ -68,38 +138,7 @@ export const Heading = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box
-                    sx={{
-                        display: "flex",
-                        gap: "15px",
-                        alignItems: "center"
-                    }}
-                >
-                    <Button
-                        sx={{
-                            color: "#1D5352",
-                            display: "flex",
-                            gap: "10px",
-                            borderRadius: "50px",
-                            px: "10px",
-                            py: "15px"
-                        }}
-                        // onClick={() => router.push("/history")}
-                    >
-                        <History />
-                        <Typography>
-                            Review Activity
-                        </Typography>
-                    </Button>
-
-                </Box>
             </Box>
-            <Divider
-                sx={{
-                    backgroundColor: "#1D5352",
-                    mt: "25px"
-                }}
-            />
         </Box>
     )
 }

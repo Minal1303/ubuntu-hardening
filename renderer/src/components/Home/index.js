@@ -6,6 +6,10 @@ import sudo from "sudo-prompt";
 import { Heading } from './Heading';
 import { LeftSide } from "./LeftSide";
 import { RightSide } from "./RightSide";
+import { StatusCard } from './Status/StatusCard';
+import { Status } from './Status';
+import { ActivityGraph } from './RightSide/ActivityGraph';
+import FrequentActivities from './Status/FrequentActivities';
 
 export const Home = () => {
 
@@ -15,13 +19,39 @@ export const Home = () => {
         display: "flex",
         flexDirection: "column",
         gap: "30px",
-        maxHeight: "100vh",
-        overflowY: "hidden",
+        // maxHeight: "100vh",
+        // overflow: "hidden",
         maxWidth: "93vw",
-        overflowX: "hidden"
       }}
     >
-      <Heading />
+      {/* <Heading /> */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <Box
+          sx={{
+            flex: 1,
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Status />
+        </Box>
+        <Box
+          sx={{
+            flex: 1,
+            width: "100%",
+            height: "100%", 
+          }}
+        >
+          <FrequentActivities />
+        </Box>
+      </Box>
       <Box
         sx={{
           display: "flex",

@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { colors } from '../../../../constants';
 
 const data = [
   {
@@ -38,9 +39,9 @@ export const ActivityGraph = () => {
     <Box
       sx={{
         flex: 1,
-        maxHeight: "350px",
+        height: "350px",
         p: "10px",
-        backgroundColor: "black",
+        backgroundColor: colors.charcoal,
         borderRadius: "20px"
       }}
     >
@@ -61,7 +62,7 @@ export const ActivityGraph = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="activities" stroke="#05D9D7" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="activities" stroke={colors.peach} activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
     </Box>
